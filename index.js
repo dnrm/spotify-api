@@ -7,18 +7,9 @@ const cors = require('cors');
 // Import spotify api functions
 const spotify = require("./spotify");
 
-let allowlist = ['react.danielmedina.dev'];
-var corsOptionsDelegate = function (req, callback) {
-  var corsOptions;
-  if (allowlist.indexOf(req.header('Origin')) !== -1) {
-    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
-  } else {
-    corsOptions = { origin: false } // disable CORS for this request
-  }
-  callback(null, corsOptions) // callback expects two parameters: error and options
-}
-
-app.use(cors(corsOptionsDelegate));
+app.use(cors({
+    origin: 'react.danielmedina.dev'
+}));
 
 let tokenOptions = {
     url: "https://accounts.spotify.com/api/token",
