@@ -8,7 +8,7 @@ const cors = require('cors');
 const spotify = require("./spotify");
 
 app.use(cors({
-    origin: 'react.danielmedina.dev'
+    origin: 'http://localhost:3000'
 }));
 
 let tokenOptions = {
@@ -47,7 +47,13 @@ app.get('/search/:query', async (req, res) => {
             image: i.album.images[0].url
         })
     });
-    res.status(200).send(response)
+    if (response.length == 0) {
+        res.status(404).send({
+            message: 'Not found'
+        })
+    } else {
+        res.status(200).send(response)
+    }
 });
 
 app.listen(port, () => console.log(`listening on http://localhost:${port}`));
