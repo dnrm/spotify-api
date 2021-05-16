@@ -3,12 +3,13 @@ const express = require("express");
 const port = process.env.PORT || 8080;
 const app = express();
 const cors = require('cors');
+const domain = process.env.DOMAIN || 'http://localhost:3000'
 
 // Import spotify api functions
 const spotify = require("./spotify");
 
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: domain
 }));
 
 let tokenOptions = {
