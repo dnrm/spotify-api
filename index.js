@@ -11,7 +11,7 @@ exports.handler = async (event) => {
                     body: JSON.stringify({
                     message: "Missing query",
                     headers: {
-                        'Access-Control-Allow-Origin': 'http://localhost:3000'
+                        'Access-Control-Allow-Origin': '*'
                     }
                 }),
             };
@@ -54,7 +54,7 @@ exports.handler = async (event) => {
                     message: "Not found",
                 }),
                 headers: {
-                    'Access-Control-Allow-Origin': 'http://localhost:3000'
+                    'Access-Control-Allow-Origin': '*'
                 }
             };
             return
@@ -63,7 +63,7 @@ exports.handler = async (event) => {
                 statusCode: 200,
                 body: JSON.stringify(items),
                 headers: {
-                    'Access-Control-Allow-Origin': 'http://localhost:3000'
+                    'Access-Control-Allow-Origin': '*'
                 }
             };
         }
