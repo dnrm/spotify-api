@@ -10,6 +10,9 @@ exports.handler = async (event) => {
                 statusCode: 404,
                     body: JSON.stringify({
                     message: "Missing query",
+                    headers: {
+                        'Access-Control-Allow-Origin': 'http://localhost:3000'
+                    }
                 }),
             };
             return response;
@@ -50,12 +53,18 @@ exports.handler = async (event) => {
                 body: JSON.stringify({
                     message: "Not found",
                 }),
+                headers: {
+                    'Access-Control-Allow-Origin': 'http://localhost:3000'
+                }
             };
             return
         } else {
             response = {
                 statusCode: 200,
                 body: JSON.stringify(items),
+                headers: {
+                    'Access-Control-Allow-Origin': 'http://localhost:3000'
+                }
             };
         }
         
