@@ -37,6 +37,7 @@ app.get('/search/:query', async (req, res) => {
 
     let response = [];
     trackInfo["tracks"]["items"].forEach(async (i) => {
+        console.log(i)
         response.push({
             name: i.name,
             album: {
@@ -44,6 +45,7 @@ app.get('/search/:query', async (req, res) => {
                 type: i.album.album_type,
                 release_date: i.album.release_date
             },
+            artist: i.artists[0].name,
             id: i.id,
             image: i.album.images[0].url
         })
