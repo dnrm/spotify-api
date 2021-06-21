@@ -5,9 +5,10 @@ const app = express();
 const cors = require('cors');
 const domain = process.env.DOMAIN || 'http://localhost:3000'
 
-// Import spotify api functions
+// ! Import spotify api functions
 const spotify = require("./spotify");
 
+// ! Allow requests from domain specified in .env file
 app.use(cors({
     origin: domain
 }));
@@ -37,17 +38,21 @@ app.get('/search/:query', async (req, res) => {
 
     let response = [];
     trackInfo["tracks"]["items"].forEach(async (i) => {
-        console.log(i)
         response.push({
+            id: i.id,
             name: i.name,
             album: {
+                id: i.album.id,
                 name: i.album.name,
                 type: i.album.album_type,
                 release_date: i.album.release_date
             },
             artist: i.artists[0].name,
             id: i.id,
-            image: i.album.images[0].url
+            image: i.album.images[0].url,
+            preview_url: i.preview_url,
+            spotify_uri: i.uri,
+            song_url: i.external_urls.spotify
         })
     });
     if (response.length == 0) {
